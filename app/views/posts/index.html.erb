@@ -1,0 +1,19 @@
+<h1>All posts</h1>
+
+<div class="container">
+  <% @postAll.each do |p|%>
+  <div class="post-container">
+    <ul class='list'>
+
+      <li>Title: <%= p.title%></li>
+      <li> Conent: <%= p.body%></li>
+
+      <% if logged_in?%>
+      <li>Author: <%= p.user.name%></li>
+
+
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>

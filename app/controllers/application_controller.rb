@@ -35,4 +35,10 @@ class ApplicationController < ActionController::Base
     current_user.forget if not current_user.nil? 
     current_user= nil
   end
+
+  def user_logged
+    if !logged_in?
+      redirect_to login_path
+    end
+  end
 end
