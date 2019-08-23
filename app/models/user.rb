@@ -4,14 +4,17 @@ class User < ApplicationRecord
   has_secure_password
 
   def create_token
-    self.token_digest = User.token
+    self.token_digest = User.encrypt_token (User.generate_token)
   end
-
-  def self.token
-    string = SecureRandom.urlsafe_base64
-
+  def self.generate_token
+     SecureRandom.urlsafe_base64
+  end
+  def self.encrypt_token (token)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    BCrypt::Password.create(token, cost: cost)
+  end
+  def forget
+    update_attribute(:token_digest,nil)
   end
 
 end
