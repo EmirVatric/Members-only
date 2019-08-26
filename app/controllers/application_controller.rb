@@ -41,4 +41,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+  private
+  def check_login
+    if logged_in?
+      redirect_to posts_path
+    end
+  end
+
 end

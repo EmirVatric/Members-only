@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :check_login,only:[:new,:create]
   def new
     current_user
   end
@@ -7,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
       signin
-      redirect_to login_path
+      redirect_to posts_path
     else
       redirect_to login_path
     end
