@@ -6,6 +6,7 @@
 
 ### About Project
 
+- This web application allow users to create accounts, login (with cookies) and share their posts.
 - In this project We created User model, with login and sessions controller, assosiation with post model, and necessary helper methods alogn with views.
 
 ### Authors
